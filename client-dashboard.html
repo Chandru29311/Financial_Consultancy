@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard | Stackly Financial Consulting</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #F8FAFC; display: flex; min-height: 100vh; }
+        .sidebar { width: 300px; background: #450a0a; color: white; padding: 50px 30px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; z-index: 1000; overflow-y: auto; flex-shrink: 0; }
+        .main-content { flex: 1; padding: 60px; min-width: 0; }
+        .nav-link { display: flex; align-items: center; gap: 15px; padding: 16px 20px; border-radius: 14px; margin-bottom: 10px; color: #94A3B8; font-weight: 600; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; text-align: left; }
+        .nav-link:hover, .nav-link.active { background: rgba(239, 68, 68, 0.15); color: #fff; }
+        .nav-link.active i { color: #EF4444; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; margin-bottom: 60px; }
+        .dashboard-card { background: white; padding: 35px; border-radius: 24px; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
+        .dashboard-card:hover { transform: translateY(-5px); }
+        .health-item { padding: 20px; border-radius: 16px; background: #F8FAFC; border: 1px solid #E2E8F0; margin-bottom: 20px; transition: background 0.3s ease; }
+        .health-item:hover { background: #F1F5F9; }
+        .vital-badge { padding: 6px 12px; border-radius: 10px; font-weight: 800; font-size: 11px; display: inline-flex; align-items: center; gap: 6px; }
+        .vitals-normal { background: #D1FAE5; color: #059669; }
+        .vitals-warning { background: #FEE2E2; color: #DC2626; }
+        .content-section { display: none; }
+        .content-section.active-section { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-text">Stackly.</div>
+    </div>
+
+    <div class="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="sidebar">
+        <div style="margin-bottom: 20px; text-align: center;">
+            <a href="client-dashboard.html">
+                <img src="assets/images/stackly logo RED.webp" alt="Stackly Financial Consulting Logo" class="site-logo">
+            </a>
+        </div>
+        <nav style="flex: 1;">
+            <a href="#profile-content" class="nav-link active"><i class="fas fa-wallet"></i> <span>My Portfolio</span></a>
+            <a href="#appointments-content" class="nav-link"><i class="fas fa-calendar-alt"></i> <span>Scheduled Reviews</span></a>
+            <a href="#lab-reports-content" class="nav-link"><i class="fas fa-file-invoice-dollar"></i> <span>Analyst Reports</span></a>
+            <a href="#prescriptions-content" class="nav-link"><i class="fas fa-exchange-alt"></i> <span>Trade Orders</span></a>
+            <a href="#consultations-content" class="nav-link"><i class="fas fa-user-tie"></i> <span>Advisory Sessions</span></a>
+        </nav>
+        <div style="margin-top: auto; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <a href="login.html" class="nav-link" style="color: #EF4444;"><i class="fas fa-door-open"></i> <span>Session Exit</span></a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="dashboard-header flex-responsive" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px;">
+            <div>
+                <h1 style="font-size: 36px; font-weight: 800; margin-bottom: 10px;">Wealth Console: <span class="gradient-text">Client Portal</span></h1>
+                <p style="color: #64748B; font-size: 16px; font-weight: 500;">Private Wealth Tier | Account Verified</p>
+            </div>
+            <div class="dashboard-header-actions" style="display: flex; align-items: center; gap: 30px;">
+                <div class="user-info-mobile" style="text-align: right; min-width: 150px;">
+                    <p style="font-size: 11px; font-weight: 800; color: #64748B; text-transform: uppercase;">Authenticated Session</p>
+                    <p id="user-email-display" style="font-weight: 700; color: #1E293B; word-break: break-all;"></p>
+                </div>
+                <button class="btn btn-primary" onclick="window.location.href='404.html'" style="padding: 10px 20px; font-size: 14px; flex: 1; justify-content: center;"><i class="fas fa-coins"></i> Deposit Funds</button>
+            </div>
+        </div>
+
+        <div id="profile-content" class="content-section active-section">
+            <div style="background: white; padding: 25px 35px; border-radius: 24px; border: 1px solid #E2E8F0; margin-bottom: 40px; display: flex; align-items: center; gap: 25px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                <div style="width: 50px; height: 50px; background: #F5F3FF; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #A855F7; flex-shrink: 0;">
+                    <i class="fas fa-gem fa-lg"></i>
+                </div>
+                <div style="flex: 1;">
+                    <p style="font-size: 12px; font-weight: 800; color: #64748B; text-transform: uppercase; margin-bottom: 4px;">Total Portfolio Value</p>
+                    <h4 style="font-size: 24px; font-weight: 800; color: #1E293B;">$4,285,150.00 <span style="font-weight: 800; font-size: 14px; color: #10B981; margin-left: 10px;">▲ +$12,400 (Today)</span></h4>
+                </div>
+                <!-- <button class="btn btn-outline" onclick="window.location.href='404.html'" style="padding: 10px 20px; font-size: 13px; white-space: nowrap; flex-shrink: 0;">View Statements</button> -->
+            </div>
+
+            <div class="stats-grid">
+                <div class="dashboard-card">
+                    <p style="color: #64748B; font-size: 13px; font-weight: 800; text-transform: uppercase;">S&P 500 Index</p>
+                    <h3 style="font-size: 36px; font-weight: 800; margin: 15px 0;">5,102.40</h3>
+                    <span class="vital-badge vitals-normal"><i class="fas fa-arrow-up"></i> +1.24%</span>
+                </div>
+                <div class="dashboard-card">
+                    <p style="color: #64748B; font-size: 13px; font-weight: 800; text-transform: uppercase;">NASDAQ Index</p>
+                    <h3 style="font-size: 36px; font-weight: 800; margin: 15px 0;">16,210.15</h3>
+                    <span class="vital-badge vitals-normal"><i class="fas fa-arrow-up"></i> +0.85%</span>
+                </div>
+                <div class="dashboard-card">
+                    <p style="color: #64748B; font-size: 13px; font-weight: 800; text-transform: uppercase;">US 10-Yr Treasury</p>
+                    <h3 style="font-size: 36px; font-weight: 800; margin: 15px 0;">4.21%</h3>
+                    <span class="vital-badge vitals-warning"><i class="fas fa-arrow-down"></i> -0.05%</span>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <div class="dashboard-card">
+                    <h3 style="margin-bottom: 25px; font-weight: 800;">Actionable Alerts</h3>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="padding: 20px; background: #FFF7ED; border-radius: 16px; border-left: 5px solid #F97316; display: flex; gap: 20px; align-items: flex-start;">
+                            <div style="width: 40px; height: 40px; background: #F97316; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0;">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                            </div>
+                            <div>
+                                <p style="font-weight: 700; color: #9A3412; margin-bottom: 4px;">Dividend Payout Ready</p>
+                                <p style="font-size: 13px; color: #C2410C; line-height: 1.5;">You have $2,450.00 in uninvested AAPL dividends. Do you want to DRIP?</p>
+                            </div>
+                        </div>
+                        <div style="padding: 20px; background: #F8FAFC; border-radius: 16px; border-left: 5px solid #EF4444; display: flex; gap: 20px; align-items: flex-start;">
+                            <div style="width: 40px; height: 40px; background: #EF4444; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0;">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div>
+                                <p style="font-weight: 700; color: #EF4444; margin-bottom: 4px;">Quarterly Rebalance Complete</p>
+                                <p style="font-size: 13px; color: #EF4444; line-height: 1.5;">Your portfolio has successfully been rebalanced to your target 60/40 risk profile.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3 style="margin-bottom: 25px; font-weight: 800;">Asset Allocation</h3>
+                    <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 13px; font-weight: 700; color: #1E293B;">US Equities</span>
+                            <span style="font-size: 12px; font-weight: 800; color: #EF4444;">55%</span>
+                        </div>
+                        <div style="height: 8px; background: #E2E8F0; border-radius: 4px; overflow: hidden;">
+                            <div style="width: 55%; height: 100%; background: #EF4444;"></div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                            <span style="font-size: 13px; font-weight: 700; color: #1E293B;">Fixed Income / Bonds</span>
+                            <span style="font-size: 12px; font-weight: 800; color: #10B981;">30%</span>
+                        </div>
+                        <div style="height: 8px; background: #E2E8F0; border-radius: 4px; overflow: hidden;">
+                            <div style="width: 30%; height: 100%; background: #10B981;"></div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                            <span style="font-size: 13px; font-weight: 700; color: #1E293B;">Cash Equivalents</span>
+                            <span style="font-size: 12px; font-weight: 800; color: #F59E0B;">15%</span>
+                        </div>
+                        <div style="height: 8px; background: #E2E8F0; border-radius: 4px; overflow: hidden;">
+                            <div style="width: 15%; height: 100%; background: #F59E0B;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="appointments-content" class="content-section">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <div class="dashboard-card">
+                    <h3 style="margin-bottom: 25px; font-weight: 800;">Tax-Loss Harvesting</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="width: 45px; height: 45px; background: rgba(239, 68, 68, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #EF4444;">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <div>
+                                    <p style="font-weight: 700; color: #1E293B; font-size: 15px;">Short-Term Losses</p>
+                                    <p style="font-size: 12px; color: #64748B; font-weight: 500;">Available to offset gains</p>
+                                </div>
+                            </div>
+                            <span style="font-weight: 800; color: #EF4444;">$12,450.00</span>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="width: 45px; height: 45px; background: rgba(239, 68, 68, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #EF4444;">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <div>
+                                    <p style="font-weight: 700; color: #1E293B; font-size: 15px;">Long-Term Losses</p>
+                                    <p style="font-size: 12px; color: #64748B; font-weight: 500;">Carryover from 2025</p>
+                                </div>
+                            </div>
+                            <span style="font-weight: 800; color: #1E293B;">$4,200.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3 style="margin-bottom: 25px; font-weight: 800;">Upcoming Strategy Meetings</h3>
+                    <div style="position: relative; padding-left: 30px; border-left: 2px dashed #E2E8F0; margin-left: 10px;">
+                        <div style="margin-bottom: 25px; position: relative;">
+                            <div style="position: absolute; left: -36px; top: 0; width: 12px; height: 12px; background: #EF4444; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 4px #FEE2E2;"></div>
+                            <p style="font-size: 13px; font-weight: 800; color: #EF4444; text-transform: uppercase;">NEXT WEEK</p>
+                            <p style="font-weight: 700; color: #1E293B;">Q1 Performance Review</p>
+                            <p style="font-size: 11px; color: #64748B;">Zoom Link â€¢ March 28 â€¢ 10:30 AM EST</p>
+                        </div>
+                        <div style="margin-bottom: 25px; position: relative;">
+                            <div style="position: absolute; left: -36px; top: 0; width: 12px; height: 12px; background: #EF4444; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 4px #FEE2E2;"></div>
+                            <p style="font-size: 13px; font-weight: 800; color: #EF4444; text-transform: uppercase;">PLANNED</p>
+                            <p style="font-weight: 700; color: #1E293B;">Tax Optimization Session</p>
+                            <p style="font-size: 11px; color: #64748B;">Office (NY) â€¢ April 12 â€¢ 09:00 AM EST</p>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="position: absolute; left: -36px; top: 0; width: 12px; height: 12px; background: #10B981; border-radius: 50%; border: 3px solid white;"></div>
+                            <p style="font-size: 13px; font-weight: 800; color: #10B981; text-transform: uppercase;">COMPLETED</p>
+                            <p style="font-weight: 700; color: #64748B;">Initial Portfolio Onboarding</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lab-reports-content" class="content-section">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <div class="dashboard-card">
+                    <h3 style="margin-bottom: 35px; font-weight: 800; font-size: 22px;">Analyst Alpha Reports</h3>
+                    <div class="health-item">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; gap: 15px; align-items: center;">
+                                <div style="width: 40px; height: 40px; background: rgba(239, 68, 68, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #EF4444;">
+                                    <i class="fas fa-file-pdf"></i>
+                                </div>
+                                <div>
+                                    <p style="font-weight: 700; color: #1E293B; font-size: 14px; margin-bottom: 2px;">Tech Sector Outlook (Q2)</p>
+                                    <p style="font-size: 12px; color: #64748B; font-weight: 500;">AI Infrastructure Expansion</p>
+                                </div>
+                            </div>
+                            <a href="404.html" class="btn btn-outline" style="padding: 8px 16px; font-size: 12px; font-weight: 700; border-radius: 8px;">Download</a>
+                        </div>
+                    </div>
+                    <div class="health-item">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; gap: 15px; align-items: center;">
+                                <div style="width: 40px; height: 40px; background: rgba(168, 85, 247, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #A855F7;">
+                                    <i class="fas fa-newspaper"></i>
+                                </div>
+                                <div>
+                                    <p style="font-weight: 700; color: #1E293B; font-size: 14px; margin-bottom: 2px;">Fed Rate Cut Projections</p>
+                                    <p style="font-size: 12px; color: #64748B; font-weight: 500;">Macro-economic Strategy</p>
+                                </div>
+                            </div>
+                            <a href="404.html" class="btn btn-outline" style="padding: 8px 16px; font-size: 12px; font-weight: 700; border-radius: 8px;">Read Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3 style="margin-bottom: 35px; font-weight: 800; font-size: 22px;">Portfolio Growth vs S&P500</h3>
+                    <div style="height: 120px; display: flex; align-items: flex-end; gap: 10px; padding-bottom: 10px;">
+                        <div style="flex: 1; background: #F1F5F9; height: 40%; border-radius: 4px;"></div>
+                        <div style="flex: 1; background: #F1F5F9; height: 60%; border-radius: 4px;"></div>
+                        <div style="flex: 1; background: #F1F5F9; height: 55%; border-radius: 4px;"></div>
+                        <div style="flex: 1; background: var(--primary-gradient); height: 85%; border-radius: 4px; box-shadow: 0 -4px 10px rgba(239,68,68,0.3);"></div>
+                        <div style="flex: 1; background: #F1F5F9; height: 70%; border-radius: 4px;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 15px; font-size: 11px; color: #64748B; font-weight: 700;">
+                        <span>Q1</span><span>Q2</span><span>Q3</span><span>Q4 (YTD)</span><span>Proj.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="prescriptions-content" class="content-section">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <div class="dashboard-card">
+                    <h3 style="margin-bottom: 35px; font-weight: 800; font-size: 22px;">Recent Trade Executions</h3>
+                    <div class="health-item">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="width: 40px; height: 40px; background: rgba(16, 185, 129, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #10B981;">
+                                    <i class="fas fa-arrow-down"></i>
+                                </div>
+                                <div>
+                                    <p style="font-weight: 800; color: #1E293B; font-size: 15px; margin-bottom: 2px;">BUY AAPL</p>
+                                    <p style="font-size: 12px; color: #64748B; font-weight: 500;">500 Shares @ $172.45</p>
+                                </div>
+                            </div>
+                            <span style="padding: 6px 14px; background: #D1FAE5; color: #059669; border-radius: 10px; font-size: 11px; font-weight: 800;">FILLED</span>
+                        </div>
+                    </div>
+                    <div class="health-item">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="width: 40px; height: 40px; background: rgba(239, 68, 68, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #EF4444;">
+                                    <i class="fas fa-arrow-up"></i>
+                                </div>
+                                <div>
+                                    <p style="font-weight: 800; color: #1E293B; font-size: 15px; margin-bottom: 2px;">SELL TSLA</p>
+                                    <p style="font-size: 12px; color: #64748B; font-weight: 500;">100 Shares @ $202.10</p>
+                                </div>
+                            </div>
+                            <span style="padding: 6px 14px; background: #FEE2E2; color: #DC2626; border-radius: 10px; font-size: 11px; font-weight: 800;">FILLED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3 style="margin-bottom: 25px; font-weight: 800;">Open Limit Orders</h3>
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="text-align: left; border-bottom: 1px solid #E2E8F0;">
+                                    <th style="padding: 10px 0; font-size: 11px; color: #64748B; text-transform: uppercase;">Asset</th>
+                                    <th style="padding: 10px 0; font-size: 11px; color: #64748B; text-transform: uppercase;">Limit Price</th>
+                                    <th style="padding: 10px 0; font-size: 11px; color: #64748B; text-transform: uppercase;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid #F1F5F9;">
+                                    <td style="padding: 15px 0; font-size: 13px; font-weight: 800; color: #1E293B;">NVDA (Buy)</td>
+                                    <td style="padding: 15px 0;"><span style="font-size: 12px; font-weight: 800; color: #EF4444;">$840.00</span></td>
+                                    <td style="padding: 15px 0;"><button onclick="window.location.href='404.html'" class="btn btn-outline" style="padding: 6px 12px; font-size: 11px; color: #EF4444; border-color: #EF4444;">Cancel</button></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #F1F5F9;">
+                                    <td style="padding: 15px 0; font-size: 13px; font-weight: 800; color: #1E293B;">MSFT (Sell)</td>
+                                    <td style="padding: 15px 0;"><span style="font-size: 12px; font-weight: 800; color: #EF4444;">$425.50</span></td>
+                                    <td style="padding: 15px 0;"><button onclick="window.location.href='404.html'" class="btn btn-outline" style="padding: 6px 12px; font-size: 11px; color: #EF4444; border-color: #EF4444;">Cancel</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="consultations-content" class="content-section">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <div class="dashboard-card" style="text-align: center;">
+                    <i class="fas fa-video fa-3x" style="color: #EF4444; margin-bottom: 20px;"></i>
+                    <h3 style="margin-bottom: 15px; font-weight: 800;">Private Wealth Conference</h3>
+                    <p style="color: #64748B; font-size: 14px; margin-bottom: 25px;">Connect securely with your lead portfolio manager for your quarterly risk assessment and strategic planning.</p>
+                    <button onclick="window.location.href='404.html'" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 14px;"><i class="fas fa-laptop" style="margin-right: 8px;"></i> Join Meeting Now</button>
+                    <button onclick="window.location.href='404.html'" class="btn btn-outline" style="width: 100%; justify-content: center; margin-top: 15px; font-size: 14px;">Reschedule</button>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3 style="margin-bottom: 25px; font-weight: 800;">Advisory Messages</h3>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="display: flex; gap: 12px; align-items: flex-start;">
+                            <div style="width: 32px; height: 32px; background: #FEE2E2; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #EF4444; font-size: 12px;"><i class="fas fa-comment-dollar"></i></div>
+                            <div>
+                                <p style="font-size: 13px; font-weight: 700; color: #1E293B;">Elena Vance: Rebalancing</p>
+                                <p style="font-size: 11px; color: #64748B;">"We took some profits on tech to buy value..." â€¢ 1 day ago</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: flex-start;">
+                            <div style="width: 32px; height: 32px; background: #FEE2E2; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #EF4444; font-size: 12px;"><i class="fas fa-file-contract"></i></div>
+                            <div>
+                                <p style="font-size: 13px; font-weight: 700; color: #1E293B;">Sarah Chen: Tax Documents</p>
+                                <p style="font-size: 11px; color: #64748B;">Your 1099-DIV forms are now available... â€¢ 3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="window.location.href='404.html'" class="btn btn-outline" style="width: 100%; justify-content: center; margin-top: 25px; font-size: 13px;">View Secure Inbox</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('SPA Navigation Initialized');
+            const sidebar = document.querySelector('.sidebar');
+            const navLinks = sidebar.querySelectorAll('.nav-link[href^="#"]');
+            const sections = document.querySelectorAll('.content-section');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href').replace('#', '');
+                    const targetSection = document.getElementById(targetId);
+
+                    console.log(`Navigation Clicked: ${targetId}`, targetSection);
+
+                    if (targetSection) {
+                        e.preventDefault();
+                        
+                        // Clear all active states
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        sections.forEach(s => s.classList.remove('active-section'));
+
+                        // Set new active states
+                        link.classList.add('active');
+                        targetSection.classList.add('active-section');
+
+                        // Update URL hash without scroll jump
+                        window.history.pushState(null, null, `#${targetId}`);
+                        console.log(`Section activated: ${targetId}`);
+                    }
+                });
+            });
+
+            // Handle initial load based on hash
+            const currentHash = window.location.hash;
+            if (currentHash) {
+                console.log(`Handling initial hash: ${currentHash}`);
+                const initialLink = sidebar.querySelector(`.nav-link[href="${currentHash}"]`);
+                if (initialLink) initialLink.click();
+            }
+        });
+    </script>
+</body>
+</html>

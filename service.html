@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Stackly Financial Consulting</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+</head>
+
+<body>
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-text">Stackly.</div>
+    </div>
+
+    <header class="glass-header">
+        <nav class="container nav-main">
+            <div class="logo">
+                <a href="index.html" style="font-size: 28px; font-weight: 800; display: flex; align-items: center; gap: 12px;">
+                    <img src="assets/images/stackly logo RED.webp" alt="Logo" class="site-logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html" class="active">Service</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-nav-login"><a href="login.html" class="btn-nav-login-mobile">Login</a></li>
+            </ul>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-actions">
+                <a href="login.html" class="btn-nav-login">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- SECTION 1: Service Hero -->
+        <section class="page-hero-enhanced">
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="grid-2" style="align-items: center; gap: 50px;">
+                    <div data-aos="fade-right">
+                        <div class="hero-badge">
+                            <i class="fas fa-cubes"></i> Tailored Solutions
+                        </div>
+                        <h1 style="color: #FFFFFF; font-size: 50px; font-weight: 800; line-height: 1.15; margin-bottom: 20px;">
+                            Financial Advisory & <span class="gradient-text">Strategic Wealth</span> Services
+                        </h1>
+                        <p style="color: #94A3B8; font-size: 18px; line-height: 1.65; margin-bottom: 30px; max-width: 600px;">
+                            Customized investment portfolio management, quantitative risk hedging, corporate M&A transactions, and tax-loss harvesting engineered for capital growth.
+                        </p>
+                        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                            <a href="contact.html" class="btn btn-primary" style="padding: 14px 32px;">Request Wealth Proposal <i class="fas fa-arrow-right"></i></a>
+                            <a href="404.html" class="btn btn-outline" style="color: #FFFFFF; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); padding: 14px 28px;">Explore All Solutions</a>
+                        </div>
+                    </div>
+                    <div data-aos="fade-left" data-aos-delay="200">
+                        <div class="hero-glass-card" style="border-right: 4px solid #10B981;">
+                            <h3 style="color: #FFFFFF; font-size: 20px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between;">
+                                <span>Core Solution Pillars</span>
+                                <i class="fas fa-layer-group" style="color: #10B981;"></i>
+                            </h3>
+                            <div style="display: flex; flex-direction: column; gap: 14px;">
+                                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.04); border-radius: 12px; border-left: 3px solid #EF4444;">
+                                    <div style="width: 36px; height: 36px; background: rgba(239, 68, 68, 0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #EF4444; flex-shrink: 0;"><i class="fas fa-wallet"></i></div>
+                                    <div>
+                                        <h4 style="color: #FFFFFF; font-size: 14px; font-weight: 700;">Wealth & Asset Allocation</h4>
+                                        <p style="color: #94A3B8; font-size: 12px;">Multi-asset diversification & dynamic rebalancing</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.04); border-radius: 12px; border-left: 3px solid #10B981;">
+                                    <div style="width: 36px; height: 36px; background: rgba(16, 185, 129, 0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #10B981; flex-shrink: 0;"><i class="fas fa-shield-alt"></i></div>
+                                    <div>
+                                        <h4 style="color: #FFFFFF; font-size: 14px; font-weight: 700;">AI Predictive Risk Auditing</h4>
+                                        <p style="color: #94A3B8; font-size: 12px;">10,000+ daily simulations & downside hedging</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.04); border-radius: 12px; border-left: 3px solid #F59E0B;">
+                                    <div style="width: 36px; height: 36px; background: rgba(245, 158, 11, 0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #F59E0B; flex-shrink: 0;"><i class="fas fa-handshake"></i></div>
+                                    <div>
+                                        <h4 style="color: #FFFFFF; font-size: 14px; font-weight: 700;">Corporate M&A Advisory</h4>
+                                        <p style="color: #94A3B8; font-size: 12px;">Target valuation & deal execution consulting</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Wealth Management & Asset Allocation -->
+        <section class="section-padding" style="background: #FFFFFF;">
+            <div class="container">
+                <div class="grid-2" style="align-items: center;">
+                    <div data-aos="fade-right">
+                        <span class="section-tag">Core Solution</span>
+                        <h2 style="font-size: 36px; font-weight: 800; margin-bottom: 20px;">Institutional Wealth & Asset Allocation</h2>
+                        <p style="color: #64748B; font-size: 16px; line-height: 1.7; margin-bottom: 20px;">
+                            We construct resilient, multi-asset portfolios designed to capture yield in bull markets while preserving capital during down-cycles.
+                        </p>
+                        <ul class="feature-list" style="margin-bottom: 25px;">
+                            <li><i class="fas fa-check-circle"></i> Dynamic Algorithmic Portfolio Rebalancing</li>
+                            <li><i class="fas fa-check-circle"></i> Global Equities, Fixed Income & Alternative Assets</li>
+                            <li><i class="fas fa-check-circle"></i> Systematic Dividend & Coupon Harvesting</li>
+                        </ul>
+                        <a href="404.html" class="btn btn-primary">Request Wealth Proposal</a>
+                    </div>
+                    <div data-aos="fade-left">
+                        <div class="fin-card" style="background: #F8FAFC; border: 1px solid #E2E8F0;">
+                            <div class="fin-icon"><i class="fas fa-chart-pie"></i></div>
+                            <h3>Portfolio Customization</h3>
+                            <p>Every allocation model is built around your liquidity timeline, target yield, and tax jurisdiction.</p>
+                            <div style="margin-top: 20px; border-top: 1px solid #E2E8F0; padding-top: 15px;">
+                                <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; margin-bottom: 8px;">
+                                    <span>Equity Allocation</span> <span>55%</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; margin-bottom: 8px;">
+                                    <span>Fixed Income</span> <span>25%</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 600;">
+                                    <span>Hedged Alternatives</span> <span>20%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: AI Predictive Risk Modeling -->
+        <section class="section-padding" style="background: #F8FAFC;">
+            <div class="container">
+                <div class="grid-2" style="align-items: center;">
+                    <div data-aos="fade-right">
+                        <div class="fin-card" style="background: #081427; color: white;">
+                            <div class="fin-icon" style="background: rgba(255,255,255,0.1); color: #EF4444;"><i class="fas fa-shield-alt"></i></div>
+                            <h3 style="color: white;">Real-Time Risk Telemetry</h3>
+                            <p style="color: #94A3B8;">Our quantitative risk engine conducts over 10,000 simulations daily to insulate capital against macro market shocks.</p>
+                            <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px;">
+                                <span style="font-size: 13px; color: #10B981; font-weight: 700;"><i class="fas fa-check"></i> Active Tail-Risk Protection Enabled</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-aos="fade-left">
+                        <span class="section-tag">Risk Control</span>
+                        <h2 style="font-size: 36px; font-weight: 800; margin-bottom: 20px;">AI Predictive Risk Auditing</h2>
+                        <p style="color: #64748B; font-size: 16px; line-height: 1.7; margin-bottom: 20px;">
+                            Protect your capital against black-swan market events and sector drawdowns through automated hedging and predictive volatility metrics.
+                        </p>
+                        <ul class="feature-list" style="margin-bottom: 25px;">
+                            <li><i class="fas fa-check-circle"></i> Value-at-Risk (VaR) Quantitative Audits</li>
+                            <li><i class="fas fa-check-circle"></i> Macro Interest Rate Sensitivity Analysis</li>
+                            <li><i class="fas fa-check-circle"></i> Options & Derivatives Downside Protection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Corporate Advisory & M&A -->
+        <section class="section-padding" style="background: #FFFFFF;">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="section-tag">Corporate Finance</span>
+                    <h2>M&A & Capital Advisory Services</h2>
+                    <p>Strategic transaction guidance for middle-market and institutional corporate transactions.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="fin-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="fin-icon"><i class="fas fa-handshake"></i></div>
+                        <h3>Buy-Side M&A Advisory</h3>
+                        <p>Target identification, valuation modeling, due diligence execution, and deal structure negotiation.</p>
+                    </div>
+                    <div class="fin-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="fin-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Sell-Side Advisory</h3>
+                        <p>Maximizing transaction enterprise value, confidential bidder management, and transaction execution.</p>
+                    </div>
+                    <div class="fin-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="fin-icon"><i class="fas fa-coins"></i></div>
+                        <h3>Capital Restructuring</h3>
+                        <p>Optimizing debt vs. equity ratios, refinancing corporate liabilities, and securing growth liquidity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Tax Optimization & Estate Planning -->
+        <section class="section-padding" style="background: #F8FAFC;">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="section-tag">Tax Strategy</span>
+                    <h2>Tax Optimization & Legacy Planning</h2>
+                    <p>Protecting wealth against tax erosion and structuring seamless generational transfer.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="fin-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="fin-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <h3>Tax-Loss Harvesting</h3>
+                        <p>Automated offset of capital gains against underperforming assets to reduce annual tax liability.</p>
+                    </div>
+                    <div class="fin-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="fin-icon"><i class="fas fa-key"></i></div>
+                        <h3>Estate & Trust Structuring</h3>
+                        <p>Establishing revocable/irrevocable trusts, family foundations, and tax-exempt charitable vehicles.</p>
+                    </div>
+                    <div class="fin-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="fin-icon"><i class="fas fa-globe"></i></div>
+                        <h3>Cross-Border Tax Advisory</h3>
+                        <p>Navigating international double-taxation treaties and foreign entity holding structures.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: Service Tiers & Engagement Models -->
+        <section class="section-padding" style="background: #FFFFFF;">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="section-tag">Tiers</span>
+                    <h2>Advisory Tiers & Engagement</h2>
+                    <p>Flexible engagement models tailored to private investors, corporate treasuries, and institutions.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="fin-card" style="text-align: center;" data-aos="fade-up" data-aos-delay="100">
+                        <h3 style="font-size: 24px; color: #081427;">Private Wealth</h3>
+                        <div style="font-size: 32px; font-weight: 800; color: #EF4444; margin: 15px 0;">$500K+</div>
+                        <p style="font-size: 14px; color: #64748B;">Minimum Portfolio Account</p>
+                        <ul class="feature-list" style="text-align: left; margin: 25px 0;">
+                            <li><i class="fas fa-check-circle"></i> Dedicated Senior Wealth Advisor</li>
+                            <li><i class="fas fa-check-circle"></i> Quarterly Portfolio Rebalancing</li>
+                            <li><i class="fas fa-check-circle"></i> Annual Tax Strategy Audit</li>
+                        </ul>
+                        <a href="404.html" class="btn btn-outline" style="width: 100%; justify-content: center;">Choose Plan</a>
+                    </div>
+                    <div class="fin-card" style="text-align: center; border: 2px solid #EF4444; position: relative;" data-aos="fade-up" data-aos-delay="200">
+                        <span style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #EF4444; color: white; padding: 4px 16px; border-radius: 20px; font-size: 12px; font-weight: 700;">MOST POPULAR</span>
+                        <h3 style="font-size: 24px; color: #081427;">Corporate Advisory</h3>
+                        <div style="font-size: 32px; font-weight: 800; color: #EF4444; margin: 15px 0;">$2M+</div>
+                        <p style="font-size: 14px; color: #64748B;">Treasury & Strategic Capital</p>
+                        <ul class="feature-list" style="text-align: left; margin: 25px 0;">
+                            <li><i class="fas fa-check-circle"></i> Real-Time AI Risk Telemetry</li>
+                            <li><i class="fas fa-check-circle"></i> M&A & Valuation Support</li>
+                            <li><i class="fas fa-check-circle"></i> Monthly Fiduciary Briefings</li>
+                        </ul>
+                        <a href="404.html" class="btn btn-primary" style="width: 100%; justify-content: center;">Choose Plan</a>
+                    </div>
+                    <div class="fin-card" style="text-align: center;" data-aos="fade-up" data-aos-delay="300">
+                        <h3 style="font-size: 24px; color: #081427;">Institutional Fund</h3>
+                        <div style="font-size: 32px; font-weight: 800; color: #EF4444; margin: 15px 0;">$10M+</div>
+                        <p style="font-size: 14px; color: #64748B;">Sovereign & Family Offices</p>
+                        <ul class="feature-list" style="text-align: left; margin: 25px 0;">
+                            <li><i class="fas fa-check-circle"></i> High-Frequency Quant Algorithms</li>
+                            <li><i class="fas fa-check-circle"></i> 24/7 Global Trading Execution</li>
+                            <li><i class="fas fa-check-circle"></i> Customized Derivative Hedging</li>
+                        </ul>
+                        <a href="404.html" class="btn btn-outline" style="width: 100%; justify-content: center;">Choose Plan</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: Onboarding Roadmap -->
+        <section class="section-padding" style="background: #F1F5F9;">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="section-tag">Onboarding</span>
+                    <h2>Client Engagement Roadmap</h2>
+                    <p>How we transition your assets into our optimized advisory framework.</p>
+                </div>
+                <div class="grid-4">
+                    <div class="roadmap-step-card" data-aos="fade-up" data-aos-delay="100">
+                        <span class="step-watermark">01</span>
+                        <div class="step-badge"><i class="fas fa-search"></i> STEP 01</div>
+                        <h4>Initial Discovery</h4>
+                        <p>Comprehensive assessment of your financial goals, liquidity needs, and risk preferences.</p>
+                    </div>
+                    <div class="roadmap-step-card" data-aos="fade-up" data-aos-delay="200">
+                        <span class="step-watermark">02</span>
+                        <div class="step-badge"><i class="fas fa-chart-pie"></i> STEP 02</div>
+                        <h4>Portfolio Audit</h4>
+                        <p>Algorithmic stress testing of your current holdings to identify yield leakage and risks.</p>
+                    </div>
+                    <div class="roadmap-step-card" data-aos="fade-up" data-aos-delay="300">
+                        <span class="step-watermark">03</span>
+                        <div class="step-badge"><i class="fas fa-cogs"></i> STEP 03</div>
+                        <h4>Strategy Execution</h4>
+                        <p>Executing rebalancing trades and tax-efficient allocations across segregated accounts.</p>
+                    </div>
+                    <div class="roadmap-step-card" data-aos="fade-up" data-aos-delay="400">
+                        <span class="step-watermark">04</span>
+                        <div class="step-badge"><i class="fas fa-eye"></i> STEP 04</div>
+                        <h4>Ongoing Oversight</h4>
+                        <p>Continuous 24/7 monitoring, transparent performance reporting, and quarterly reviews.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 8: Call To Action -->
+        <section class="container" data-aos="fade-up">
+            <div class="cta-banner">
+                <h2>Schedule Your Confidential Portfolio Audit</h2>
+                <p>Our senior advisors will analyze your current portfolio and deliver a custom strategy report.</p>
+                <a href="404.html" class="btn btn-primary" style="background: #FFFFFF; color: #081427; font-weight: 700;">Request Audit Call <i class="fas fa-phone-alt"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" style="display: inline-block; margin-bottom: 20px;">
+                        <img src="assets/images/stackly logo RED.webp" alt="Stackly Logo" class="footer-logo">
+                    </a>
+                    <p>Providing strategic financial advisory solutions for businesses to navigate complex wealth landscapes, build scalable portfolios, and achieve market success.</p>
+                    <div class="footer-socials">
+                        <a href="404.html" class="footer-social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="404.html" class="footer-social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="404.html" class="footer-social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="service.html">Service</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="404.html">Wealth Management</a></li>
+                        <li><a href="404.html">AI Risk Modeling</a></li>
+                        <li><a href="404.html">M&A Advisory</a></li>
+                        <li><a href="404.html">Tax Strategy</a></li>
+                        <li><a href="404.html">Asset Allocation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for the latest financial insights, market trends, and advisory news.</p>
+                    <form onsubmit="event.preventDefault();" class="newsletter-box">
+                        <input type="email" placeholder="Your Email Address" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Stackly Financial Consulting International. Empowering finance through intelligence.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

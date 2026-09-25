@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advisor Dashboard | Stackly Financial Consulting</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #F8FAFC; display: flex; min-height: 100vh; }
+        .sidebar { width: 300px; background: #450a0a; color: white; padding: 50px 30px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; z-index: 1000; overflow-y: auto; flex-shrink: 0; }
+        .main-content { flex: 1; padding: 60px; min-width: 0; }
+        .nav-link { display: flex; align-items: center; gap: 15px; padding: 16px 20px; border-radius: 14px; margin-bottom: 10px; color: #94A3B8; font-weight: 600; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; text-align: left; }
+        .nav-link:hover, .nav-link.active { background: rgba(239, 68, 68, 0.15); color: #fff; }
+        .nav-link.active i { color: #EF4444; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 35px; margin-bottom: 60px; }
+        .dashboard-card { background: white; padding: 35px; border-radius: 24px; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
+        .dashboard-card:hover { transform: translateY(-5px); }
+        .paper-item { padding: 20px; border-radius: 16px; background: #F8FAFC; border: 1px solid #E2E8F0; margin-bottom: 20px; transition: background 0.3s ease; }
+        .paper-item:hover { background: #F1F5F9; }
+        .content-section { display: none; }
+        .content-section.active-section { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* Sparkline CSS */
+        .sparkline { display: flex; align-items: flex-end; height: 30px; gap: 2px; }
+        .sparkline div { flex: 1; background: #EF4444; border-radius: 2px 2px 0 0; opacity: 0.8; }
+        .sparkline.red div { background: #EF4444; }
+        .sparkline.green div { background: #10B981; }
+    </style>
+</head>
+<body>
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-text">Stackly.</div>
+    </div>
+
+    <div class="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="sidebar">
+        <div style="margin-bottom: 20px; text-align: center;">
+            <a href="advisor-dashboard.html">
+                <img src="assets/images/stackly logo RED.webp" alt="Stackly Financial Consulting Logo" class="site-logo">
+            </a>
+        </div>
+        <nav>
+            <a href="#protocols-content" class="nav-link active"><i class="fas fa-chart-line"></i> <span>Strategies</span></a>
+            <a href="#assays-content" class="nav-link"><i class="fas fa-project-diagram"></i> <span>Quant Models</span></a>
+            <a href="#data-assets-content" class="nav-link"><i class="fas fa-database"></i> <span>Market Data</span></a>
+            <a href="#team-content" class="nav-link"><i class="fas fa-users"></i> <span>Trading Desk</span></a>
+            <a href="#grants-content" class="nav-link"><i class="fas fa-hand-holding-usd"></i> <span>AUM & Capital</span></a>
+            <a href="#config-content" class="nav-link"><i class="fas fa-sliders-h"></i> <span>Risk Config</span></a>
+        </nav>
+        <div style="margin-top: auto; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <a href="login.html" class="nav-link" style="color: #EF4444;"><i class="fas fa-door-open"></i> <span>Session Exit</span></a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="dashboard-header flex-responsive" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px;">
+            <div>
+                <h1 style="font-size: 36px; font-weight: 800; margin-bottom: 10px;">Financial Console: <span class="gradient-text">Advisor Portal</span></h1>
+                <p style="color: #64748B; font-size: 16px; font-weight: 500;">Secure Trading Desk Alpha-9 | Access Level: Tier 1</p>
+            </div>
+            <div class="dashboard-header-actions" style="display: flex; align-items: center; gap: 30px;">
+                <div class="user-info-mobile" style="text-align: right; min-width: 150px;">
+                    <p style="font-size: 11px; font-weight: 800; color: #64748B; text-transform: uppercase; letter-spacing: 1px;">Authenticated Session</p>
+                    <p id="user-email-display" style="font-weight: 700; color: #1E293B; font-size: 14px; word-break: break-all;"></p>
+                </div>
+                <div class="btn-group-mobile" style="display: flex; gap: 15px; width: 100%;">
+                    <button class="btn btn-outline" onclick="window.location.href='404.html'" style="padding: 10px 20px; font-size: 14px; flex: 1; justify-content: center;"><i class="fas fa-file-export" style="margin-right: 8px;"></i> Export Ledger</button>
+                    <button class="btn btn-primary" onclick="window.location.href='404.html'" style="padding: 10px 20px; font-size: 14px; flex: 1; justify-content: center;"><i class="fas fa-plus" style="margin-right: 8px;"></i> New Strategy</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="protocols-content" class="content-section active-section">
+            <div class="stats-grid">
+                <div class="dashboard-card">
+                    <p style="color: #64748B; font-size: 13px; font-weight: 800; text-transform: uppercase;">Daily PnL (Net)</p>
+                    <h3 style="font-size: 36px; font-weight: 800; margin: 15px 0;">+$124.5K</h3>
+                    <p style="color: #10B981; font-size: 14px; font-weight: 600;"><i class="fas fa-arrow-up"></i> 3.2% vs Yesterday</p>
+                </div>
+                <div class="dashboard-card">
+                    <p style="color: #64748B; font-size: 13px; font-weight: 800; text-transform: uppercase;">Portfolio Beta</p>
+                    <h3 style="font-size: 36px; font-weight: 800; margin: 15px 0;">0.84</h3>
+                    <div style="height: 10px; background: #F1F5F9; border-radius: 10px; overflow: hidden;">
+                        <div style="width: 84%; height: 100%; background: var(--primary-gradient);"></div>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <p style="color: #64748B; font-size: 13px; font-weight: 800; text-transform: uppercase;">Sharpe Ratio</p>
+                    <h3 style="font-size: 36px; font-weight: 800; margin: 15px 0;">2.15</h3>
+                    <p style="color: #EF4444; font-size: 14px; font-weight: 600;"><i class="fas fa-chart-line"></i> Top Quartile</p>
+                </div>
+                <div class="dashboard-card">
+                    <p style="color: #64748B; font-size: 13px; font-weight: 800; text-transform: uppercase;">Active Margin Use</p>
+                    <h3 style="font-size: 36px; font-weight: 800; margin: 15px 0;">42.8%</h3>
+                    <p style="color: #F59E0B; font-size: 14px; font-weight: 600;"><i class="fas fa-exclamation-circle"></i> Within Limits</p>
+                </div>
+            </div>
+
+        <div id="protocols-section" class="dashboard-card" style="margin-bottom: 40px;">
+            <div class="flex-responsive" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px;">
+                <div>
+                    <h3 style="font-weight: 800; font-size: 24px;">Quantitative Strategies Ledger</h3>
+                    <p style="color: #64748B; font-size: 14px; font-weight: 500;">Live execution overview across global exchanges.</p>
+                </div><br>
+                <div class="btn-group-mobile" style="display: flex; gap: 15px;">
+                    <button onclick="window.location.href='404.html'" class="btn btn-outline" style="padding: 10px 20px; font-size: 13px; flex: 1; justify-content: center;"><i class="fas fa-filter" style="margin-right: 8px;"></i> Filter Matrix</button>
+                    <button onclick="window.location.href='404.html'" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px; flex: 1; justify-content: center;"><i class="fas fa-cogs" style="margin-right: 8px;"></i> Deploy Algo</button>
+                </div>
+            </div>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="text-align: left; border-bottom: 2px solid #F1F5F9;">
+                            <th style="padding: 15px 0; color: #64748B; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">Algorithm ID</th>
+                            <th style="padding: 15px 0; color: #64748B; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">Strategy Focus</th>
+                            <th style="padding: 15px 0; color: #64748B; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">Market Trend</th>
+                            <th style="padding: 15px 0; color: #64748B; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">Return (YTD)</th>
+                            <th style="padding: 15px 0; color: #64748B; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">Execution Status</th>
+                            <th style="padding: 15px 0; color: #64748B; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">Control</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #F1F5F9;">
+                            <td style="padding: 25px 0; font-weight: 800; color: #EF4444;">#ALG-ST-ARB</td>
+                            <td style="padding: 25px 0;">
+                                <p style="font-weight: 700; color: #1E293B; margin-bottom: 4px;">Statistical Arbitrage (Pairs)</p>
+                                <p style="font-size: 12px; color: #64748B; font-weight: 500;">Equities / Mean Reversion</p>
+                            </td>
+                            <td style="padding: 25px 0;">
+                                <div class="sparkline green" style="width: 60px;">
+                                    <div style="height: 30%"></div><div style="height: 50%"></div><div style="height: 40%"></div><div style="height: 70%"></div><div style="height: 90%"></div>
+                                </div>
+                            </td>
+                            <td style="padding: 25px 0;">
+                                <span style="font-weight: 800; color: #10B981; font-size: 14px;">+18.4%</span>
+                            </td>
+                            <td style="padding: 25px 0;"><span style="display: flex; align-items: center; gap: 6px; color: #10B981; font-weight: 700; font-size: 13px; background: rgba(16,185,129,0.1); padding: 4px 10px; border-radius: 8px;"><i class="fas fa-circle" style="font-size: 8px;"></i> LIVE</span></td>
+                            <td style="padding: 25px 0;">
+                                <div style="display: flex; gap: 12px; align-items: center;">
+                                    <button onclick="window.location.href='404.html'" title="Metrics" style="background: none; border: none; color: #64748B; cursor: pointer; transition: color 0.3s; padding: 4px;"><i class="fas fa-chart-line"></i></button>
+                                    <button onclick="window.location.href='404.html'" title="Halt" style="background: none; border: none; color: #EF4444; cursor: pointer; transition: color 0.3s; padding: 4px;"><i class="fas fa-stop-circle"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #F1F5F9;">
+                            <td style="padding: 25px 0; font-weight: 800; color: #EF4444;">#ALG-V-SCALP</td>
+                            <td style="padding: 25px 0;">
+                                <p style="font-weight: 700; color: #1E293B; margin-bottom: 4px;">Volatility Scalping</p>
+                                <p style="font-size: 12px; color: #64748B; font-weight: 500;">Derivatives / High Frequency</p>
+                            </td>
+                            <td style="padding: 25px 0;">
+                                <div class="sparkline" style="width: 60px;">
+                                    <div style="height: 60%"></div><div style="height: 40%"></div><div style="height: 80%"></div><div style="height: 50%"></div><div style="height: 60%"></div>
+                                </div>
+                            </td>
+                            <td style="padding: 25px 0;">
+                                <span style="font-weight: 800; color: #EF4444; font-size: 14px;">+4.2%</span>
+                            </td>
+                            <td style="padding: 25px 0;"><span style="display: flex; align-items: center; gap: 6px; color: #EF4444; font-weight: 700; font-size: 13px; background: rgba(239,68,68,0.1); padding: 4px 10px; border-radius: 8px;"><i class="fas fa-sync fa-spin" style="font-size: 10px;"></i> BACKTESTING</span></td>
+                            <td style="padding: 25px 0;">
+                                <div style="display: flex; gap: 12px; align-items: center;">
+                                    <button onclick="window.location.href='404.html'" title="Metrics" style="background: none; border: none; color: #64748B; cursor: pointer; transition: color 0.3s; padding: 4px;"><i class="fas fa-chart-line"></i></button>
+                                    <button onclick="window.location.href='404.html'" title="Halt" style="background: none; border: none; color: #EF4444; cursor: pointer; transition: color 0.3s; padding: 4px;"><i class="fas fa-stop-circle"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #F1F5F9;">
+                            <td style="padding: 25px 0; font-weight: 800; color: #EF4444;">#ALG-D-NEUT</td>
+                            <td style="padding: 25px 0;">
+                                <p style="font-weight: 700; color: #1E293B; margin-bottom: 4px;">Delta-Neutral Hedging</p>
+                                <p style="font-size: 12px; color: #64748B; font-weight: 500;">Options / Risk Mitigation</p>
+                            </td>
+                            <td style="padding: 25px 0;">
+                                <div class="sparkline red" style="width: 60px;">
+                                    <div style="height: 80%"></div><div style="height: 60%"></div><div style="height: 70%"></div><div style="height: 40%"></div><div style="height: 20%"></div>
+                                </div>
+                            </td>
+                            <td style="padding: 25px 0;">
+                                <span style="font-weight: 800; color: #EF4444; font-size: 14px;">-1.8%</span>
+                            </td>
+                            <td style="padding: 25px 0;"><span style="display: flex; align-items: center; gap: 6px; color: #EF4444; font-weight: 700; font-size: 13px; background: rgba(239,68,68,0.1); padding: 4px 10px; border-radius: 8px;"><i class="fas fa-exclamation-triangle" style="font-size: 10px;"></i> RECALIBRATING</span></td>
+                            <td style="padding: 25px 0;">
+                                <div style="display: flex; gap: 12px; align-items: center;">
+                                    <button onclick="window.location.href='404.html'" title="Metrics" style="background: none; border: none; color: #64748B; cursor: pointer; transition: color 0.3s; padding: 4px;"><i class="fas fa-chart-line"></i></button>
+                                    <button onclick="window.location.href='404.html'" title="Halt" style="background: none; border: none; color: #EF4444; cursor: pointer; transition: color 0.3s; padding: 4px;"><i class="fas fa-stop-circle"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="assays-content" class="content-section">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-bottom: 40px;">
+            <div class="dashboard-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <h3 style="font-weight: 800; font-size: 22px;">Quantitative Backtesting</h3>
+                    <span style="font-size: 12px; color: #EF4444; font-weight: 700;">3 Training</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="paper-item" style="margin-bottom: 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="font-weight: 700; color: #1E293B;">NLP Sentiment Engine v4</span>
+                            <span style="font-size: 12px; color: #EF4444; font-weight: 800;">Epoch 740/1000</span>
+                        </div>
+                        <div style="height: 6px; background: #E2E8F0; border-radius: 3px; overflow: hidden;">
+                            <div style="width: 74%; height: 100%; background: #EF4444;"></div>
+                        </div>
+                    </div>
+                    <div class="paper-item" style="margin-bottom: 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="font-weight: 700; color: #1E293B;">Order Book Imbalance DNN</span>
+                            <span style="font-size: 12px; color: #F59E0B; font-weight: 800;">Validation Phase</span>
+                        </div>
+                        <div style="height: 6px; background: #E2E8F0; border-radius: 3px; overflow: hidden;">
+                            <div style="width: 42%; height: 100%; background: #F59E0B;"></div>
+                        </div>
+                    </div>
+                    <div class="paper-item" style="margin-bottom: 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="font-weight: 700; color: #1E293B;">Macro-Factor PCA Matrix</span>
+                            <span style="font-size: 12px; color: #10B981; font-weight: 800;">Ready for Live</span>
+                        </div>
+                        <div style="height: 6px; background: #E2E8F0; border-radius: 3px; overflow: hidden;">
+                            <div style="width: 100%; height: 100%; background: #10B981;"></div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="window.location.href='404.html'" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 25px; font-size: 13px;"><i class="fas fa-brain" style="margin-right: 8px;"></i> Compile New Model</button>
+            </div>
+
+            <div class="dashboard-card">
+                <h3 style="margin-bottom: 25px; font-weight: 800;">Alpha Generation Signals</h3>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="text-align: left; border-bottom: 2px solid #F1F5F9;">
+                                <th style="padding: 12px 0; font-size: 11px; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px;">Ticker</th>
+                                <th style="padding: 12px 0; font-size: 11px; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px;">Signal Action</th>
+                                <th style="padding: 12px 0; font-size: 11px; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px;">Conviction</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #F1F5F9;">
+                                <td style="padding: 12px 0; font-size: 13px; font-weight: 800; color: #1E293B;">NVDA</td>
+                                <td style="padding: 12px 0;"><span style="font-size: 10px; font-weight: 800; color: #10B981; background: rgba(16,185,129,0.1); padding: 4px 8px; border-radius: 4px;">STRONG BUY</span></td>
+                                <td style="padding: 12px 0; font-size: 12px; font-weight: 700; color: #64748B;">98.4%</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #F1F5F9;">
+                                <td style="padding: 12px 0; font-size: 13px; font-weight: 800; color: #1E293B;">MSFT</td>
+                                <td style="padding: 12px 0;"><span style="font-size: 10px; font-weight: 800; color: #EF4444; background: rgba(239,68,68,0.1); padding: 4px 8px; border-radius: 4px;">ACCUMULATE</span></td>
+                                <td style="padding: 12px 0; font-size: 12px; font-weight: 700; color: #64748B;">82.1%</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #F1F5F9;">
+                                <td style="padding: 12px 0; font-size: 13px; font-weight: 800; color: #1E293B;">INTC</td>
+                                <td style="padding: 12px 0;"><span style="font-size: 10px; font-weight: 800; color: #EF4444; background: rgba(239,68,68,0.1); padding: 4px 8px; border-radius: 4px;">REDUCE / SHORT</span></td>
+                                <td style="padding: 12px 0; font-size: 12px; font-weight: 700; color: #64748B;">94.2%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3 style="margin-bottom: 25px; font-weight: 800;">Global Exposure Limits</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #F8FAFC; border-radius: 12px; border: 1px solid #BBF7D0;">
+                        <span style="font-weight: 700; color: #10B981; font-size: 13px;">North American Equities</span>
+                        <span style="font-size: 11px; font-weight: 800; color: #10B981;">65% WEIGHT</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #F5F3FF; border-radius: 12px; border: 1px solid #FDE68A;">
+                        <span style="font-weight: 700; color: #F59E0B; font-size: 13px;">Emerging Market Bonds</span>
+                        <span style="font-size: 11px; font-weight: 800; color: #F59E0B;">15% WEIGHT</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0;">
+                        <span style="font-weight: 700; color: #EF4444; font-size: 13px;">Cash & Equivalents</span>
+                        <span style="font-size: 11px; font-weight: 800; color: #EF4444;">20% RESERVE</span>
+                    </div>
+                </div>
+                <button onclick="window.location.href='404.html'" class="btn btn-outline" style="width: 100%; justify-content: center; margin-top: 20px; font-size: 13px;">Rebalance Portfolio</button>
+            </div>
+        </div>
+    </div>
+    <div id="data-assets-content" class="content-section">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-bottom: 40px;">
+            <div class="dashboard-card">
+                <h3 style="margin-bottom: 25px; font-weight: 800; font-size: 22px;">Market Data Feeds</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0;">
+                        <div style="width: 40px; height: 40px; background: rgba(16, 185, 129, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #10B981;">
+                            <i class="fas fa-satellite-dish"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <p style="font-weight: 700; font-size: 14px; color: #1E293B;">NYSE Level 2 Tick Data</p>
+                            <p style="font-size: 11px; color: #64748B;">Latency: 4ms â€¢ 4.2 TB/Day</p>
+                        </div>
+                        <i class="fas fa-chevron-right" style="color: #94A3B8;"></i>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0;">
+                        <div style="width: 40px; height: 40px; background: rgba(168, 85, 247, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #A855F7;">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <p style="font-weight: 700; font-size: 14px; color: #1E293B;">Alternative Satellite Imagery</p>
+                            <p style="font-size: 11px; color: #64748B;">Retail Foot-traffic â€¢ Weekly Sync</p>
+                        </div>
+                        <i class="fas fa-chevron-right" style="color: #94A3B8;"></i>
+                    </div>
+                </div>
+                <button onclick="window.location.href='404.html'" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 25px; font-size: 13px;"><i class="fas fa-plug" style="margin-right: 8px;"></i> Connect New API</button>
+            </div>
+
+            <div class="dashboard-card">
+                <h3 style="margin-bottom: 25px; font-weight: 800;">API Rate Limits</h3>
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="font-size: 12px; font-weight: 700; color: #1E293B;">Bloomberg Terminal API</span>
+                        <span style="font-size: 11px; font-weight: 800; color: #EF4444;">9.8M / 10M Reqs</span>
+                    </div>
+                    <div style="height: 6px; background: #E2E8F0; border-radius: 3px; overflow: hidden;">
+                        <div style="width: 98%; height: 100%; background: #EF4444;"></div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="font-size: 12px; font-weight: 700; color: #1E293B;">Reuters Sentiment Feed</span>
+                        <span style="font-size: 11px; font-weight: 800; color: #EF4444;">45% Capacity</span>
+                    </div>
+                    <div style="height: 6px; background: #E2E8F0; border-radius: 3px; overflow: hidden;">
+                        <div style="width: 45%; height: 100%; background: #EF4444;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3 style="margin-bottom: 25px; font-weight: 800;">Colocation Data Centers</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: #F8FAFC; border-radius: 12px;">
+                        <span style="font-weight: 700; color: #1E293B; font-size: 13px;">NY4 (Secaucus, NJ)</span>
+                        <span style="font-size: 10px; font-weight: 800; color: #10B981;"><i class="fas fa-check"></i> OPTIMAL PING</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: #F8FAFC; border-radius: 12px;">
+                        <span style="font-weight: 700; color: #1E293B; font-size: 13px;">LD4 (London, UK)</span>
+                        <span style="font-size: 10px; font-weight: 800; color: #10B981;"><i class="fas fa-check"></i> OPTIMAL PING</span>
+                    </div>
+                </div>
+                <button onclick="window.location.href='404.html'" class="btn btn-outline" style="width: 100%; justify-content: center; margin-top: 20px; font-size: 13px;">Run Latency Diagnostics</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="grants-content" class="content-section">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <div class="dashboard-card">
+                    <h3 style="margin-bottom: 25px; font-weight: 800;">Capital Inflows (AUM)</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div style="padding: 20px; background: #F8FAFC; border-radius: 16px; border-left: 5px solid #10B981; margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="font-weight: 800;">Institutional: Sovereign Wealth Fund</span>
+                                <span style="color: #10B981; font-weight: 700;">$150.0M</span>
+                            </div>
+                            <p style="font-size: 14px; color: #64748B;">Status: Cleared KYC/AML | Deposited: Feb 15</p>
+                        </div>
+                        <div style="padding: 20px; background: #F8FAFC; border-radius: 16px; border-left: 5px solid #EF4444;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="font-weight: 800;">High Net Worth Client Group B</span>
+                                <span style="color: #EF4444; font-weight: 700;">$24.5M</span>
+                            </div>
+                            <p style="font-size: 14px; color: #64748B;">Status: Pending Wire Transfer</p>
+                        </div>
+                        <button onclick="window.location.href='404.html'" class="btn btn-outline" style="width: 100%; justify-content: center; margin-top: 10px; font-size: 13px;">View Ledger</button>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3 style="margin-bottom: 25px; font-weight: 800;">Treasury Metrics</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 20px;">
+                        <div style="padding: 20px; background: #F8FAFC; border-radius: 16px; text-align: center;">
+                            <i class="fas fa-vault fa-2x" style="color: #EF4444; margin-bottom: 15px;"></i>
+                            <p style="font-size: 13px; font-weight: 800; color: #64748B; text-transform: uppercase;">Total AUM</p>
+                            <h4 style="margin-top: 5px; font-size: 20px;">$2.4B</h4>
+                        </div>
+                        <div style="padding: 20px; background: #F8FAFC; border-radius: 16px; text-align: center;">
+                            <i class="fas fa-hand-holding-usd fa-2x" style="color: #A855F7; margin-bottom: 15px;"></i>
+                            <p style="font-size: 13px; font-weight: 800; color: #64748B; text-transform: uppercase;">Mgmt Fee Rev</p>
+                            <h4 style="margin-top: 5px; font-size: 20px;">$48M</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3 style="margin-bottom: 25px; font-weight: 800;">Fundraising Milestones</h3>
+                    <div style="position: relative; padding-left: 30px; border-left: 2px dashed #E2E8F0; margin-left: 10px;">
+                        <div style="margin-bottom: 25px; position: relative;">
+                            <div style="position: absolute; left: -36px; top: 0; width: 12px; height: 12px; background: #10B981; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 4px #D1FAE5;"></div>
+                            <p style="font-size: 13px; font-weight: 800; color: #10B981; text-transform: uppercase;">CLOSED</p>
+                            <p style="font-weight: 700; color: #1E293B;">Series B Funding Round</p>
+                            <p style="font-size: 11px; color: #64748B;">Dec 15, 2025 â€¢ $50M Raised</p>
+                        </div>
+                        <div style="margin-bottom: 25px; position: relative;">
+                            <div style="position: absolute; left: -36px; top: 0; width: 12px; height: 12px; background: #EF4444; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 4px #FEE2E2;"></div>
+                            <p style="font-size: 13px; font-weight: 800; color: #EF4444; text-transform: uppercase;">ACTIVE</p>
+                            <p style="font-weight: 700; color: #1E293B;">Global Expansion Fund III</p>
+                            <p style="font-size: 11px; color: #64748B;">Target: $500M â€¢ Commitments: $310M</p>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="position: absolute; left: -36px; top: 0; width: 12px; height: 12px; background: #94A3B8; border-radius: 50%; border: 3px solid white;"></div>
+                            <p style="font-size: 13px; font-weight: 800; color: #94A3B8; text-transform: uppercase;">PLANNED</p>
+                            <p style="font-weight: 700; color: #64748B;">IPO Preparation</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="team-content" class="content-section">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-bottom: 40px;">
+            <div class="dashboard-card">
+                <h3 style="margin-bottom: 25px; font-weight: 800;">Quantitative Analysts</h3>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 45px; height: 45px; background: #E0F2FE; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #0369A1; font-weight: 800;">AS</div>
+                        <div>
+                            <p style="font-weight: 700; color: #1E293B;">Dr. Alan Smith</p>
+                            <p style="font-size: 12px; color: #64748B;">Head of Alpha Research</p>
+                        </div>
+                        <span style="margin-left: auto; width: 10px; height: 10px; background: #10B981; border-radius: 50%;"></span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 45px; height: 45px; background: #F8FAFC; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #EF4444; font-weight: 800;">JD</div>
+                        <div>
+                            <p style="font-weight: 700; color: #1E293B;">Janet Doe</p>
+                            <p style="font-size: 12px; color: #64748B;">Lead Derivatives Trader</p>
+                        </div>
+                        <span style="margin-left: auto; width: 10px; height: 10px; background: #94A3B8; border-radius: 50%;"></span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 45px; height: 45px; background: #F5F3FF; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #7C3AED; font-weight: 800;">ML</div>
+                        <div>
+                            <p style="font-weight: 700; color: #1E293B;">Marcus Lee</p>
+                            <p style="font-size: 12px; color: #64748B;">Chief Risk Officer</p>
+                        </div>
+                        <span style="margin-left: auto; width: 10px; height: 10px; background: #10B981; border-radius: 50%;"></span>
+                    </div>
+                </div>
+                <button onclick="window.location.href='404.html'" class="btn btn-outline" style="width: 100%; justify-content: center; margin-top: 25px; font-size: 13px;"><i class="fas fa-user-plus" style="margin-right: 8px;"></i> Recruit Quant</button>
+            </div>
+
+            <div class="dashboard-card">
+                <h3 style="margin-bottom: 25px; font-weight: 800;">Trading Desk Volume</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div style="padding: 20px; background: #F8FAFC; border-radius: 16px; text-align: center;">
+                        <p style="font-size: 11px; font-weight: 800; color: #64748B; text-transform: uppercase;">Tickets Executed</p>
+                        <h4 style="font-size: 24px; font-weight: 800; color: #EF4444; margin-top: 5px;">14,285</h4>
+                    </div>
+                    <div style="padding: 20px; background: #F8FAFC; border-radius: 16px; text-align: center;">
+                        <p style="font-size: 11px; font-weight: 800; color: #64748B; text-transform: uppercase;">Notional Value</p>
+                        <h4 style="font-size: 24px; font-weight: 800; color: #EF4444; margin-top: 5px;">$1.2B</h4>
+                    </div>
+                </div>
+                <div style="margin-top: 25px;">
+                    <p style="font-size: 13px; font-weight: 700; color: #1E293B; margin-bottom: 15px;">Volume vs Daily Target</p>
+                    <div style="height: 8px; background: #E2E8F0; border-radius: 4px; overflow: hidden;">
+                        <div style="width: 92%; height: 100%; background: var(--primary-gradient);"></div>
+                    </div>
+                    <p style="font-size: 11px; color: #64748B; margin-top: 8px;">Target: $1.3B Notional</p>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3 style="margin-bottom: 25px; font-weight: 800;">Recent Audit Trail</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div style="display: flex; gap: 12px; align-items: flex-start;">
+                        <div style="width: 32px; height: 32px; background: #FEE2E2; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #EF4444; font-size: 12px;"><i class="fas fa-file-upload"></i></div>
+                        <div>
+                            <p style="font-size: 13px; font-weight: 700; color: #1E293B;">Dr. Smith overridden risk limit</p>
+                            <p style="font-size: 11px; color: #64748B;">24 mins ago â€¢ Justification provided</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px; align-items: flex-start;">
+                        <div style="width: 32px; height: 32px; background: #D1FAE5; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #10B981; font-size: 12px;"><i class="fas fa-check-circle"></i></div>
+                        <div>
+                            <p style="font-size: 13px; font-weight: 700; color: #1E293B;">Compliance Dept verified trades</p>
+                            <p style="font-size: 11px; color: #64748B;">2h ago â€¢ EOD Review</p>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="window.location.href='404.html'" class="btn btn-outline" style="width: 100%; justify-content: center; margin-top: 25px; font-size: 13px;">View Full Compliance Log</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="config-content" class="content-section">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-bottom: 40px;">
+            <div class="dashboard-card">
+                <h3 style="margin-bottom: 25px; font-weight: 800;">Global Desk Risk Controls</h3>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <p style="font-weight: 700; color: #1E293B;">Automated Stop-Loss</p>
+                            <p style="font-size: 12px; color: #64748B;">Liquidate all positions at -5% daily drop</p>
+                        </div>
+                        <div style="width: 44px; height: 24px; background: #EF4444; border-radius: 12px; position: relative;">
+                            <div style="width: 18px; height: 18px; background: white; border-radius: 50%; position: absolute; right: 3px; top: 3px;"></div>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <p style="font-weight: 700; color: #1E293B;">Dark Pool Routing</p>
+                            <p style="font-size: 12px; color: #64748B;">Hide large block trades from public lit markets</p>
+                        </div>
+                        <div style="width: 44px; height: 24px; background: #E2E8F0; border-radius: 12px; position: relative;">
+                            <div style="width: 18px; height: 18px; background: white; border-radius: 50%; position: absolute; left: 3px; top: 3px;"></div>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <p style="font-weight: 700; color: #1E293B;">Algorithmic Kill Switch</p>
+                            <p style="font-size: 12px; color: #EF4444; font-weight: 700;"><i class="fas fa-skull-crossbones"></i> Extreme Emergency Only</p>
+                        </div>
+                        <button onclick="window.location.href='404.html'" class="btn btn-primary" style="background: #EF4444; padding: 6px 12px; font-size: 11px;">ARM SYSTEM</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('SPA Navigation Initialized');
+            const sidebar = document.querySelector('.sidebar');
+            const navLinks = sidebar.querySelectorAll('.nav-link[href^="#"]');
+            const sections = document.querySelectorAll('.content-section');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href').replace('#', '');
+                    const targetSection = document.getElementById(targetId);
+
+                    console.log(`Navigation Clicked: ${targetId}`, targetSection);
+
+                    if (targetSection) {
+                        e.preventDefault();
+                        
+                        // Clear all active states
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        sections.forEach(s => s.classList.remove('active-section'));
+
+                        // Set new active states
+                        link.classList.add('active');
+                        targetSection.classList.add('active-section');
+
+                        // Update URL hash without scroll jump
+                        window.history.pushState(null, null, `#${targetId}`);
+                        console.log(`Section activated: ${targetId}`);
+                    }
+                });
+            });
+
+            // Handle initial load based on hash
+            const currentHash = window.location.hash;
+            if (currentHash) {
+                console.log(`Handling initial hash: ${currentHash}`);
+                const initialLink = sidebar.querySelector(`.nav-link[href="${currentHash}"]`);
+                if (initialLink) initialLink.click();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Market Insights | Stackly Financial Consulting</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+</head>
+
+<body>
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-text">Stackly.</div>
+    </div>
+
+    <header class="glass-header">
+        <nav class="container nav-main">
+            <div class="logo">
+                <a href="index.html" style="font-size: 28px; font-weight: 800; display: flex; align-items: center; gap: 12px;">
+                    <img src="assets/images/stackly logo RED.webp" alt="Logo" class="site-logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html">Service</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-nav-login"><a href="login.html" class="btn-nav-login-mobile">Login</a></li>
+            </ul>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-actions">
+                <a href="login.html" class="btn-nav-login">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- SECTION 1: Blog Hero -->
+        <section class="page-hero-enhanced">
+            <div class="container" style="position: relative; z-index: 2; text-align: center;">
+                <div data-aos="fade-up" style="max-width: 850px; margin: 0 auto;">
+                    <div class="hero-badge">
+                        <i class="fas fa-newspaper"></i> Market Insights & Research
+                    </div>
+                    <h1 style="color: #FFFFFF; font-size: 52px; font-weight: 800; line-height: 1.15; margin-bottom: 20px;">
+                        Financial Advisory & <span class="gradient-text">Economic Intelligence</span>
+                    </h1>
+                    <p style="color: #94A3B8; font-size: 19px; line-height: 1.65; margin-bottom: 35px;">
+                        In-depth market analysis, quantitative research, central bank policy breakdowns, and wealth strategies authored by senior Stackly advisors.
+                    </p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; align-items: center;">
+                        <div class="hero-stat-pill"><i class="fas fa-book-open" style="color: #EF4444;"></i> Daily Market Notes</div>
+                        <div class="hero-stat-pill"><i class="fas fa-microchip" style="color: #10B981;"></i> Quant Research Papers</div>
+                        <div class="hero-stat-pill"><i class="fas fa-chart-bar" style="color: #F59E0B;"></i> Macro Policy Analysis</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Featured Article Spotlight -->
+        <section class="section-padding" style="background: #FFFFFF;">
+            <div class="container">
+                <div style="background: #081427; border-radius: 24px; padding: 50px; color: white; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;" data-aos="fade-up">
+                    <div>
+                        <span style="background: #EF4444; color: white; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase;">FEATURED REPORT</span>
+                        <h2 style="color: white; font-size: 34px; font-weight: 800; margin: 15px 0;">2026 Global Market Outlook: Interest Rates & AI Disruption</h2>
+                        <p style="color: #94A3B8; font-size: 16px; line-height: 1.7; margin-bottom: 25px;">
+                            An extensive analysis on central bank policy pivots, liquidity shifts, and how AI-driven asset allocation models are preserving yield across international equity markets.
+                        </p>
+                        <div style="display: flex; gap: 20px; font-size: 13px; color: #64748B; margin-bottom: 25px;">
+                            <span style="color: #94A3B8;"><i class="far fa-user" style="color: #EF4444;"></i> Dr. Marcus Vance</span>
+                            <span style="color: #94A3B8;"><i class="far fa-calendar" style="color: #EF4444;"></i> Sept 20, 2026</span>
+                            <span style="color: #94A3B8;"><i class="far fa-clock" style="color: #EF4444;"></i> 12 min read</span>
+                        </div>
+                        <a href="404.html" class="btn btn-primary">Read Full Analysis <i class="fas fa-arrow-down"></i></a>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 30px; border: 1px solid rgba(255,255,255,0.1);">
+                        <h4 style="color: #EF4444; font-size: 20px; font-weight: 700; margin-bottom: 15px;">Key Takeaways:</h4>
+                        <ul class="feature-list" style="color: #94A3B8;">
+                            <li style="color: #CBD5E1;"><i class="fas fa-check-circle" style="color: #EF4444;"></i> Central banks expected to trim benchmark rates by 50-75 bps.</li>
+                            <li style="color: #CBD5E1;"><i class="fas fa-check-circle" style="color: #EF4444;"></i> High-yield corporate bonds facing duration risk adjustments.</li>
+                            <li style="color: #CBD5E1;"><i class="fas fa-check-circle" style="color: #EF4444;"></i> Systematic quant rebalancing outperforming manual asset allocation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Category Filter Navigation -->
+        <section class="blog-category-section" data-aos="fade-up">
+            <div class="container" style="display: flex; justify-content: center;">
+                <div class="category-filter-nav">
+                    <button class="category-tab active" data-category="all">
+                        <span class="cat-icon"><i class="fas fa-layer-group"></i></span>
+                        <span>All Articles</span>
+                        <span class="cat-count">18</span>
+                    </button>
+                    <button class="category-tab" data-category="wealth">
+                        <span class="cat-icon"><i class="fas fa-chart-line"></i></span>
+                        <span>Wealth Strategy</span>
+                        <span class="cat-count">5</span>
+                    </button>
+                    <button class="category-tab" data-category="quant">
+                        <span class="cat-icon"><i class="fas fa-microchip"></i></span>
+                        <span>Quant & AI</span>
+                        <span class="cat-count">4</span>
+                    </button>
+                    <button class="category-tab" data-category="macro">
+                        <span class="cat-icon"><i class="fas fa-globe-americas"></i></span>
+                        <span>Macroeconomics</span>
+                        <span class="cat-count">6</span>
+                    </button>
+                    <button class="category-tab" data-category="tax">
+                        <span class="cat-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                        <span>Tax & M&A</span>
+                        <span class="cat-count">3</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Latest Articles Grid -->
+        <section id="articles" class="section-padding" style="background: #FFFFFF;">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="section-tag">Recent Publications</span>
+                    <h2>Latest Research & Articles</h2>
+                    <p>Actionable intelligence for investors, family offices, and corporate treasuries.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="blog-card" data-category="quant" data-aos="fade-up" data-aos-delay="100">
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> Sept 18, 2026</span>
+                                <span><i class="far fa-clock"></i> 6 min read</span>
+                            </div>
+                            <h3>Algorithmic Hedging in High Volatility Markets</h3>
+                            <p>How predictive derivative models protect equity portfolios against sudden macro geopolitical shocks.</p>
+                            <a href="404.html" style="color: #EF4444; font-weight: 700; margin-top: auto;">Read Article <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-card" data-category="wealth" data-aos="fade-up" data-aos-delay="200">
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> Sept 15, 2026</span>
+                                <span><i class="far fa-clock"></i> 8 min read</span>
+                            </div>
+                            <h3>Private Wealth Restructuring Ahead of Tax Policy Shift</h3>
+                            <p>Key legal and financial steps to optimize estate trust structures before upcoming regulatory changes.</p>
+                            <a href="404.html" style="color: #EF4444; font-weight: 700; margin-top: auto;">Read Article <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-card" data-category="quant" data-aos="fade-up" data-aos-delay="300">
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> Sept 12, 2026</span>
+                                <span><i class="far fa-clock"></i> 5 min read</span>
+                            </div>
+                            <h3>The Rise of Agentic AI in Institutional Treasury</h3>
+                            <p>Automating cash flow forecasts and working capital management using multi-agent financial models.</p>
+                            <a href="404.html" style="color: #EF4444; font-weight: 700; margin-top: auto;">Read Article <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-card" data-category="tax" data-aos="fade-up" data-aos-delay="100">
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> Sept 08, 2026</span>
+                                <span><i class="far fa-clock"></i> 7 min read</span>
+                            </div>
+                            <h3>M&A Valuation Metrics for Tech Middle-Market</h3>
+                            <p>Current EBITDA multiples, revenue quality benchmarks, and transaction structuring in 2026.</p>
+                            <a href="404.html" style="color: #EF4444; font-weight: 700; margin-top: auto;">Read Article <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-card" data-category="macro" data-aos="fade-up" data-aos-delay="200">
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> Sept 04, 2026</span>
+                                <span><i class="far fa-clock"></i> 4 min read</span>
+                            </div>
+                            <h3>ESG Fixed Income Bonds: Yield Analysis for 2026</h3>
+                            <p>Evaluating risk-adjusted returns and credit ratings across green bond issuance frameworks.</p>
+                            <a href="404.html" style="color: #EF4444; font-weight: 700; margin-top: auto;">Read Article <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-card" data-category="wealth" data-aos="fade-up" data-aos-delay="300">
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> Aug 29, 2026</span>
+                                <span><i class="far fa-clock"></i> 9 min read</span>
+                            </div>
+                            <h3>De-Risking Cross-Border Corporate Holdings</h3>
+                            <p>Navigating currency exchange risks and international tax exposure in multinational operations.</p>
+                            <a href="404.html" style="color: #EF4444; font-weight: 700; margin-top: auto;">Read Article <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Economic Indicators Snapshot -->
+        <section class="stats-banner">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <span style="color: #EF4444; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Market Telemetry</span>
+                    <h3 style="color: white; font-size: 26px;">Global Economic Indicators</h3>
+                </div>
+                <div class="grid-4">
+                    <div class="stat-item">
+                        <div class="stat-number" style="font-size: 32px; color: #10B981;" data-target="4.25" data-prefix="" data-suffix="%" data-decimals="2" data-mirror="true">4.25%</div>
+                        <div class="stat-label">Fed Target Funds Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" style="font-size: 32px; color: #EF4444;" data-target="3.85" data-prefix="" data-suffix="%" data-decimals="2" data-mirror="true">3.85%</div>
+                        <div class="stat-label">10-Year US Treasury Yield</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" style="font-size: 32px; color: #10B981;" data-target="21.4" data-prefix="" data-suffix="x" data-decimals="1" data-mirror="true">21.4x</div>
+                        <div class="stat-label">S&P 500 Forward P/E</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" style="font-size: 32px; color: #10B981;" data-target="2650" data-prefix="$" data-suffix="" data-decimals="0" data-mirror="true">$2,650</div>
+                        <div class="stat-label">Gold Spot / Oz</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: Downloadable Institutional Reports -->
+        <section class="section-padding" style="background: #F8FAFC;">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="section-tag">Reports</span>
+                    <h2>Downloadable Institutional Whitepapers</h2>
+                    <p>In-depth PDF intelligence briefings produced by our quantitative research team.</p>
+                </div>
+                <div class="grid-2">
+                    <div class="fin-card" style="display: flex; gap: 20px; align-items: center;" data-aos="fade-up" data-aos-delay="100">
+                        <div class="fin-icon" style="flex-shrink: 0;"><i class="fas fa-file-pdf"></i></div>
+                        <div>
+                            <h3>Q3 2026 Institutional Asset Report</h3>
+                            <p style="margin-bottom: 12px;">Comprehensive analysis of global liquidity flows, yield curve shifts, and tactical portfolio allocations.</p>
+                            <a href="404.html" class="btn btn-outline" style="padding: 6px 18px; font-size: 13px;"><i class="fas fa-download"></i> Download PDF (4.2 MB)</a>
+                        </div>
+                    </div>
+                    <div class="fin-card" style="display: flex; gap: 20px; align-items: center;" data-aos="fade-up" data-aos-delay="200">
+                        <div class="fin-icon" style="flex-shrink: 0;"><i class="fas fa-file-pdf"></i></div>
+                        <div>
+                            <h3>AI Sentiment Tracking Benchmark</h3>
+                            <p style="margin-bottom: 12px;">How natural language processing models predict market volatility ahead of corporate earnings calls.</p>
+                            <a href="404.html" class="btn btn-outline" style="padding: 6px 18px; font-size: 13px;"><i class="fas fa-download"></i> Download PDF (3.8 MB)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: Monthly Chief Economist Column -->
+        <section class="section-padding" style="background: #FFFFFF;">
+            <div class="container">
+                <div style="background: #F1F5F9; border-radius: 20px; padding: 40px; border: 1px solid #E2E8F0;" data-aos="fade-up">
+                    <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
+                        <img src="assets/images/marcus_vance.webp" alt="Dr. Marcus Vance" class="client-avatar-img" style="width: 60px; height: 60px;">
+                        <div>
+                            <h3 style="font-size: 22px; font-weight: 700;">Monthly Advisory Briefing</h3>
+                            <p style="color: #EF4444; font-weight: 600; font-size: 14px;">By Dr. Marcus Vance, Chief Investment Officer</p>
+                        </div>
+                    </div>
+                    <p style="color: #334155; font-size: 16px; line-height: 1.8; font-style: italic;">
+                        "As we enter the final quarter of 2026, portfolio managers must balance equity growth momentum against fixed-income duration risk. Our quantitative models recommend maintaining a 15% liquid buffer to capitalize on volatility dips while keeping long-term core holdings hedged against currency fluctuations."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 8: Newsletter Subscription CTA -->
+        <section class="container" data-aos="fade-up">
+            <div class="cta-banner">
+                <h2>Get Weekly Financial Briefings in Your Inbox</h2>
+                <p>Join 25,000+ financial executives receiving our market intelligence updates.</p>
+                <form class="newsletter-box" style="max-width: 500px; margin: 0 auto; display: flex; gap: 10px;">
+                    <input type="email" placeholder="Enter your business email" class="form-input newsletter-input" style="background: white; border: none; border-radius: 10px;" required>
+                    <button type="submit" class="btn btn-primary" style="white-space: nowrap;">Subscribe Free</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" style="display: inline-block; margin-bottom: 20px;">
+                        <img src="assets/images/stackly logo RED.webp" alt="Stackly Logo" class="footer-logo">
+                    </a>
+                    <p>Providing strategic financial advisory solutions for businesses to navigate complex wealth landscapes, build scalable portfolios, and achieve market success.</p>
+                    <div class="footer-socials">
+                        <a href="404.html" class="footer-social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="404.html" class="footer-social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="404.html" class="footer-social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="service.html">Service</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="404.html">Wealth Management</a></li>
+                        <li><a href="404.html">AI Risk Modeling</a></li>
+                        <li><a href="404.html">M&A Advisory</a></li>
+                        <li><a href="404.html">Tax Strategy</a></li>
+                        <li><a href="404.html">Asset Allocation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for the latest financial insights, market trends, and advisory news.</p>
+                    <form onsubmit="event.preventDefault();" class="newsletter-box">
+                        <input type="email" placeholder="Your Email Address" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Stackly Financial Consulting International. Empowering finance through intelligence.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Stackly Financial Consulting</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+</head>
+
+<body>
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-text">Stackly.</div>
+    </div>
+
+    <header class="glass-header">
+        <nav class="container nav-main">
+            <div class="logo">
+                <a href="index.html" style="font-size: 28px; font-weight: 800; display: flex; align-items: center; gap: 12px;">
+                    <img src="assets/images/stackly logo RED.webp" alt="Logo" class="site-logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html">Service</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li class="mobile-nav-login"><a href="login.html" class="btn-nav-login-mobile">Login</a></li>
+            </ul>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-actions">
+                <a href="login.html" class="btn-nav-login">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- SECTION 1: Contact Hero -->
+        <section class="page-hero-enhanced">
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="grid-2" style="align-items: center; gap: 50px;">
+                    <div data-aos="fade-right">
+                        <div class="hero-badge">
+                            <i class="fas fa-headset"></i> Direct Advisory Channel
+                        </div>
+                        <h1 style="color: #FFFFFF; font-size: 50px; font-weight: 800; line-height: 1.15; margin-bottom: 20px;">
+                            Connect with Our <span class="gradient-text">Senior Financial</span> Advisors
+                        </h1>
+                        <p style="color: #94A3B8; font-size: 18px; line-height: 1.65; margin-bottom: 30px; max-width: 600px;">
+                            Have questions regarding portfolio restructuring, corporate M&A transactions, or AI risk modeling? Schedule a private session with our advisory team.
+                        </p>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <div class="hero-stat-pill"><i class="fas fa-phone-alt" style="color: #EF4444;"></i> +91 9876543210</div>
+                            <div class="hero-stat-pill"><i class="fas fa-lock" style="color: #EF4444;"></i> 256-Bit Encrypted Desk</div>
+                            <div class="hero-stat-pill"><i class="fas fa-clock" style="color: #EF4444;"></i> 24h Response Guarantee</div>
+                        </div>
+                    </div>
+                    <div data-aos="fade-left" data-aos-delay="200">
+                        <div class="hero-glass-card" style="border-left: 4px solid #EF4444;">
+                            <h3 style="color: #FFFFFF; font-size: 20px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between;">
+                                <span>Global Advisory Hubs</span>
+                                <i class="fas fa-globe" style="color: #EF4444;"></i>
+                            </h3>
+                            <div style="display: flex; flex-direction: column; gap: 14px;">
+                                <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: rgba(255,255,255,0.04); border-radius: 12px;">
+                                    <div>
+                                        <h4 style="color: #FFFFFF; font-size: 14px; font-weight: 700;">Salem Headquarters (Stackly)</h4>
+                                        <p style="color: #94A3B8; font-size: 12px;">MMR Complex, Chinna Thirupathi, Salem</p>
+                                    </div>
+                                    <span style="color: #10B981; font-size: 11px; font-weight: 800;"><i class="fas fa-circle" style="font-size: 7px; margin-right: 4px;"></i> OPEN</span>
+                                </div>
+                                <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: rgba(255,255,255,0.04); border-radius: 12px;">
+                                    <div>
+                                        <h4 style="color: #FFFFFF; font-size: 14px; font-weight: 700;">Europe (London Hub)</h4>
+                                        <p style="color: #94A3B8; font-size: 12px;">25 Old Broad Street, Floor 14</p>
+                                    </div>
+                                    <span style="color: #10B981; font-size: 11px; font-weight: 800;"><i class="fas fa-circle" style="font-size: 7px; margin-right: 4px;"></i> OPEN</span>
+                                </div>
+                                <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: rgba(255,255,255,0.04); border-radius: 12px;">
+                                    <div>
+                                        <h4 style="color: #FFFFFF; font-size: 14px; font-weight: 700;">Asia-Pacific (Singapore Hub)</h4>
+                                        <p style="color: #94A3B8; font-size: 12px;">10 Marina Boulevard, Tower 2</p>
+                                    </div>
+                                    <span style="color: #10B981; font-size: 11px; font-weight: 800;"><i class="fas fa-circle" style="font-size: 7px; margin-right: 4px;"></i> OPEN</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Contact Info Cards -->
+        <section class="section-padding" style="background: #FFFFFF;">
+            <div class="container">
+                <div class="grid-4">
+                    <div class="fin-card" style="text-align: center;" data-aos="fade-up" data-aos-delay="100">
+                        <div class="fin-icon" style="margin: 0 auto 15px;"><i class="fas fa-phone-alt"></i></div>
+                        <h4>Call Us Directly</h4>
+                        <p style="color: #EF4444; font-weight: 700; font-size: 16px; margin-top: 6px;">9876543210</p>
+                        <p style="font-size: 13px; color: #64748B;">Mon-Fri: 9am - 7pm IST</p>
+                    </div>
+                    <div class="fin-card" style="text-align: center;" data-aos="fade-up" data-aos-delay="200">
+                        <div class="fin-icon" style="margin: 0 auto 15px;"><i class="fas fa-envelope"></i></div>
+                        <h4>Email Advisory</h4>
+                        <p style="color: #EF4444; font-weight: 700; font-size: 16px; margin-top: 6px;">info@stackly.com</p>
+                        <p style="font-size: 13px; color: #64748B;">24-hour response guarantee</p>
+                    </div>
+                    <div class="fin-card" style="text-align: center;" data-aos="fade-up" data-aos-delay="300">
+                        <div class="fin-icon" style="margin: 0 auto 15px;"><i class="fas fa-map-marker-alt"></i></div>
+                        <h4>Global HQ</h4>
+                        <p style="color: #081427; font-weight: 700; font-size: 15px; margin-top: 6px;">MMR Complex, Chinna Thirupathi</p>
+                        <p style="font-size: 13px; color: #64748B;">near Chinna Muniyappan Kovil, Salem, TN 636008</p>
+                    </div>
+                    <div class="fin-card" style="text-align: center;" data-aos="fade-up" data-aos-delay="400">
+                        <div class="fin-icon" style="margin: 0 auto 15px;"><i class="fas fa-user-shield"></i></div>
+                        <h4>Client Portal Support</h4>
+                        <p style="color: #081427; font-weight: 700; font-size: 15px; margin-top: 6px;">Encrypted Desk</p>
+                        <a href="login.html" style="color: #EF4444; font-weight: 700; font-size: 13px;">Login to Portal <i class="fas fa-sign-in-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Consultation Request Form -->
+        <section class="section-padding" style="background: #F8FAFC;">
+            <div class="container">
+                <div class="grid-2" style="align-items: flex-start;">
+                    <div class="contact-card" data-aos="fade-right">
+                        <h3 style="font-size: 26px; font-weight: 800; margin-bottom: 10px;">Request Advisory Consultation</h3>
+                        <p style="color: #64748B; font-size: 15px; margin-bottom: 25px;">Complete the form below to schedule a private call with a senior financial consultant.</p>
+                        <form id="consultForm" novalidate>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input type="text" id="firstName" name="firstName" class="form-input" placeholder="John">
+                                    <small class="error-message" id="firstNameError"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Doe">
+                                    <small class="error-message" id="lastNameError"></small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Work / Personal Email</label>
+                                <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com">
+                                <small class="error-message" id="emailError"></small>
+                            </div>
+                            <div class="form-group">
+                                <label>Investor Category</label>
+                                <select id="investorCategory" name="investorCategory" class="form-input" style="background: white;">
+                                    <option value="" disabled selected hidden>Select Investor Category</option>
+                                    <option value="High-Net-Worth Individual ($500K+)">High-Net-Worth Individual ($500K+)</option>
+                                    <option value="Corporate Treasury ($2M+)">Corporate Treasury ($2M+)</option>
+                                    <option value="Institutional Fund ($10M+)">Institutional Fund ($10M+)</option>
+                                    <option value="Family Office">Family Office</option>
+                                </select>
+                                <small class="error-message" id="categoryError"></small>
+                            </div>
+                            <div class="form-group">
+                                <label>Message / Investment Objective</label>
+                                <textarea id="message" name="message" rows="4" class="form-input" placeholder="Briefly describe your investment timeline or financial advisory goals..."></textarea>
+                                <small class="error-message" id="messageError"></small>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Submit Request <i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+
+                    <div data-aos="fade-left">
+                        <div style="background: #081427; color: white; border-radius: 20px; padding: 40px; margin-bottom: 24px;">
+                            <h3 style="color: white; font-size: 24px; margin-bottom: 15px;">Why Schedule a Call?</h3>
+                            <ul class="feature-list" style="margin-bottom: 25px;">
+                                <li style="color: #CBD5E1;"><i class="fas fa-check-circle" style="color: #EF4444;"></i> Confidential 360° portfolio health assessment.</li>
+                                <li style="color: #CBD5E1;"><i class="fas fa-check-circle" style="color: #EF4444;"></i> Zero-obligation scenario stress testing.</li>
+                                <li style="color: #CBD5E1;"><i class="fas fa-check-circle" style="color: #EF4444;"></i> Direct access to senior quant strategists.</li>
+                            </ul>
+                            <div style="padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px;">
+                                <p style="color: #94A3B8; font-size: 13px;"><i class="fas fa-lock" style="color: #EF4444; margin-right: 6px;"></i> All consultations are bound by strict non-disclosure and fiduciary confidentiality standards.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Global Hub Office Locations -->
+        <section class="section-padding" style="background: #FFFFFF;">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="section-tag">Locations</span>
+                    <h2>Our Global Advisory Offices</h2>
+                    <p>Visit our regional headquarters for in-person strategy sessions.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="location-office-card" data-aos="fade-up" data-aos-delay="100">
+                        <span class="location-watermark"><i class="fas fa-building"></i></span>
+                        <div class="location-badge"><i class="fas fa-star"></i> HEADQUARTERS</div>
+                        <h4>Salem HQ (India)</h4>
+                        <div class="location-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>MMR Complex, Chinna Thirupathi,<br>near Chinna Muniyappan Kovil, Salem, TN 636008</span>
+                        </div>
+                        <div class="location-phone"><i class="fas fa-phone-alt"></i> 9876543210</div>
+                    </div>
+                    <div class="location-office-card" data-aos="fade-up" data-aos-delay="200">
+                        <span class="location-watermark"><i class="fas fa-globe-europe"></i></span>
+                        <div class="location-badge"><i class="fas fa-city"></i> EUROPE HUB</div>
+                        <h4>Europe (London)</h4>
+                        <div class="location-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>25 Old Broad Street, Floor 14<br>London, EC2N 1HN, UK</span>
+                        </div>
+                        <div class="location-phone"><i class="fas fa-phone-alt"></i> +44 20 7946 0912</div>
+                    </div>
+                    <div class="location-office-card" data-aos="fade-up" data-aos-delay="300">
+                        <span class="location-watermark"><i class="fas fa-globe-asia"></i></span>
+                        <div class="location-badge"><i class="fas fa-landmark"></i> APAC HUB</div>
+                        <h4>Asia-Pacific (Singapore)</h4>
+                        <div class="location-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>10 Marina Boulevard, Tower 2<br>Singapore 018983</span>
+                        </div>
+                        <div class="location-phone"><i class="fas fa-phone-alt"></i> +65 6789 0123</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Priority Support & Desk -->
+        <section class="section-padding" style="background: #F1F5F9;">
+            <div class="container">
+                <div style="background: white; border-radius: 20px; padding: 40px; border: 1px solid #E2E8F0; text-align: center;" data-aos="fade-up">
+                    <span class="section-tag">Existing Clients</span>
+                    <h2>Need Immediate Account Assistance?</h2>
+                    <p style="color: #64748B; max-width: 600px; margin: 0 auto 25px;">Our 24/7 trading desk and client support team can be reached directly via encrypted phone or live advisor portal.</p>
+                    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                        <a href="login.html" class="btn btn-primary"><i class="fas fa-user-lock"></i> Client Portal Login</a>
+                        <a href="404.html" class="btn btn-outline"><i class="fas fa-headset"></i> Call Support Line</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: Frequently Asked Questions (FAQ Accordion) -->
+        <section class="section-padding" style="background: #FFFFFF;">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <span class="section-tag">FAQ</span>
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Common questions regarding our onboarding, fee structure, and security protocols.</p>
+                </div>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div class="faq-box active" data-aos="fade-up" data-aos-delay="100">
+                        <div class="faq-header">
+                            <h4>What is the minimum portfolio size required to work with Stackly?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our private wealth advisory tier starts at $500,000 in liquid investable assets. Corporate treasury and institutional plans begin at $2M and $10M respectively.</p>
+                        </div>
+                    </div>
+                    <div class="faq-box active" data-aos="fade-up" data-aos-delay="200">
+                        <div class="faq-header">
+                            <h4>How are advisory fees structured?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We operate on a transparent tier-based Assets Under Management (AUM) fee model, typically ranging from 0.40% to 0.85% annually, with zero hidden trade commissions.</p>
+                        </div>
+                    </div>
+                    <div class="faq-box active" data-aos="fade-up" data-aos-delay="300">
+                        <div class="faq-header">
+                            <h4>Which regulatory bodies oversee Stackly?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Stackly is registered with the SEC in the United States, FCA in the UK, and MAS in Singapore, adhering strictly to global fiduciary and compliance standards.</p>
+                        </div>
+                    </div>
+                    <div class="faq-box active" data-aos="fade-up" data-aos-delay="400">
+                        <div class="faq-header">
+                            <h4>Can Stackly integrate with our existing custodian banks?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes. We integrate seamlessly with major global custodian institutions including Charles Schwab, Fidelity, BNY Mellon, and UBS via secure API connectivity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: Interactive Location Map -->
+        <section style="height: 400px; width: 100%; position: relative;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3907.411649234853!2d78.1739798!3d11.6829566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babefef7fd970bb%3A0xe11aef1a71994f9!2sStackly!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <div style="position: absolute; bottom: 20px; right: 20px; z-index: 10;">
+                <a href="https://www.google.com/maps/place/Stackly/@11.6829566,78.1739798,17z/data=!3m1!4b1!4m6!3m5!1s0x3babefef7fd970bb:0xe11aef1a71994f9!8m2!3d11.6829566!4d78.1739798!16s%2Fg%2F11l660s35r?entry=ttu&g_ep=EgoyMDI2MDcwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 13px; padding: 10px 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);"><i class="fas fa-map-marked-alt"></i> Open in Google Maps</a>
+            </div>
+        </section>
+
+        <!-- SECTION 8: Security & Compliance Guarantee Banner -->
+        <section class="container" data-aos="fade-up">
+            <div class="cta-banner">
+                <h2>Your Financial Security is Our Top Priority</h2>
+                <p>Protected by 256-bit SOC-2 certified encryption and segregated custodian accounts.</p>
+                <a href="signup.html" class="btn btn-primary" style="background: #FFFFFF; color: #081427; font-weight: 700;">Open Account Portal <i class="fas fa-shield-alt"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" style="display: inline-block; margin-bottom: 20px;">
+                        <img src="assets/images/stackly logo RED.webp" alt="Stackly Logo" class="footer-logo">
+                    </a>
+                    <p>Providing strategic financial advisory solutions for businesses to navigate complex wealth landscapes, build scalable portfolios, and achieve market success.</p>
+                    <div class="footer-socials">
+                        <a href="404.html" class="footer-social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="404.html" class="footer-social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="404.html" class="footer-social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="service.html">Service</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="404.html">Wealth Management</a></li>
+                        <li><a href="404.html">AI Risk Modeling</a></li>
+                        <li><a href="404.html">M&A Advisory</a></li>
+                        <li><a href="404.html">Tax Strategy</a></li>
+                        <li><a href="404.html">Asset Allocation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for the latest financial insights, market trends, and advisory news.</p>
+                    <form onsubmit="event.preventDefault();" class="newsletter-box">
+                        <input type="email" placeholder="Your Email Address" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Stackly Financial Consulting International. Empowering finance through intelligence.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/main.js"></script>
+    <!-- <script>
+        document.getElementById('consultForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you! Your advisory consultation request has been submitted. A senior advisor will contact you shortly.');
+        });
+    </script> -->
+</body>
+</html>
