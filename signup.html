@@ -102,7 +102,17 @@
                     <label style="display: block; font-size: 13px; font-weight: 800; margin-bottom: 12px; color: #64748B; text-transform: uppercase; letter-spacing: 1px;">Encryption Key</label>
                     <div style="position: relative;">
                         <i class="fas fa-key" style="position: absolute; left: 16px; top: 18px; color: #EF4444;"></i>
-                        <input type="password" placeholder="Fill the Password" required style="width: 100%; padding: 16px 16px 16px 48px; border-radius: 14px; border: 1px solid #E2E8F0; background: #F8FAFC; font-size: 15px;">
+                        <input type="password" id="userPassword" placeholder="Fill the Password" required style="width: 100%; padding: 16px 16px 16px 48px; border-radius: 14px; border: 1px solid #E2E8F0; background: #F8FAFC; font-size: 15px;">
+                    </div>
+                </div>
+                <div>
+                    <label style="display: block; font-size: 13px; font-weight: 800; margin-bottom: 12px; color: #64748B; text-transform: uppercase; letter-spacing: 1px;">Confirm Encryption Key</label>
+                    <div style="position: relative;">
+                        <i class="fas fa-shield-alt" style="position: absolute; left: 16px; top: 18px; color: #EF4444;"></i>
+                        <input type="password" id="confirmPassword" placeholder="Confirm the Password" required style="width: 100%; padding: 16px 16px 16px 48px; border-radius: 14px; border: 1px solid #E2E8F0; background: #F8FAFC; font-size: 15px;">
+                    </div>
+                    <div id="passwordError" style="color: #EF4444; font-size: 12px; font-weight: 600; margin-top: 6px; display: none;">
+                        <i class="fas fa-exclamation-circle" style="margin-right: 4px;"></i> Passwords do not match
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary" style="padding: 18px; justify-content: center; font-size: 16px; font-weight: 800;">
@@ -114,19 +124,41 @@
                 <p style="color: #64748B;">Already have an ID? <a href="login.html" class="gradient-text" style="font-weight: 700;">Initiate Authorization</a></p>
             </div>
             <script>
+                const userPassword = document.getElementById('userPassword');
+                const confirmPassword = document.getElementById('confirmPassword');
+                const passwordError = document.getElementById('passwordError');
+
+                function validatePassword() {
+                    if (confirmPassword.value && userPassword.value !== confirmPassword.value) {
+                        confirmPassword.setCustomValidity('Passwords do not match');
+                        confirmPassword.style.borderColor = '#EF4444';
+                        if (passwordError) passwordError.style.display = 'block';
+                        return false;
+                    } else {
+                        confirmPassword.setCustomValidity('');
+                        confirmPassword.style.borderColor = '#E2E8F0';
+                        if (passwordError) passwordError.style.display = 'none';
+                        return true;
+                    }
+                }
+
+                userPassword.addEventListener('input', validatePassword);
+                confirmPassword.addEventListener('input', validatePassword);
+
                 document.getElementById('signupForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    if (!validatePassword()) {
+                        confirmPassword.reportValidity();
+                        return;
+                    }
+
                     const email = document.getElementById('userEmail').value;
                     const role = document.getElementById('roleSelect').value;
                     localStorage.setItem('userEmail', email);
                     localStorage.setItem('userRole', role);
-                    // Redirect based on role
-                    if (role === 'Advisor') {
-                        e.preventDefault();
-                        window.location.href = 'advisor-dashboard.html';
-                    } else if (role === 'Client') {
-                        e.preventDefault();
-                        window.location.href = 'client-dashboard.html';
-                    }
+                    // Redirect to login page
+                    window.location.href = 'login.html';
                 });
             </script>
             <div style="margin-top: 25px; background: #F8FAFC; border-radius: 16px; padding: 15px; text-align: left;" data-aos="fade-up" data-aos-delay="200">
